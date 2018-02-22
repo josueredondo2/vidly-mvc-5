@@ -7,17 +7,22 @@ namespace Vidly
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            //carga los javascripts 
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.js",
+                        //JS de modales
                         "~/scripts/bootbox.js",
                         "~/Scripts/respond.js",
+                        //datatables
                         "~/scripts/datatables/jquery.datatables.js",
                         "~/scripts/datatables/datatables.bootstrap.js",
+                        //autocomplete
                         "~/scripts/typeahead.bundle.js",
+                        //notificaciones
                         "~/scripts/toastr.js"
                       ));
-
+            //Validaciones de front end
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
