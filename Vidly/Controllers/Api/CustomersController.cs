@@ -17,19 +17,20 @@ namespace Vidly.Controllers.Api
             _context = new ApplicationDbContext();
         }
 
-        // GET /api/customers
+        // GET /api/customers obtiene los customers mediante un query 
         public IHttpActionResult GetCustomers(string query = null)
         {
+            //obtiene los customers
             var customersQuery = _context.Customers
                 .Include(c => c.MembershipType);
-
+            //verifica el nombre
             if (!String.IsNullOrWhiteSpace(query))
                 customersQuery = customersQuery.Where(c => c.Name.Contains(query));
-
+            //Covierte los customers a un dto
             var customerDtos = customersQuery
                 .ToList()
                 .Select(Mapper.Map<Customer, CustomerDto>);
-            
+            //envia dto
             return Ok(customerDtos);    
         }
 

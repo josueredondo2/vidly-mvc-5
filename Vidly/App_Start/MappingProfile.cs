@@ -8,6 +8,8 @@ namespace Vidly.App_Start
     {
         public MappingProfile()
         {
+            
+            //Crea los mapeos entre dto y clases
             // Domain to Dto
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<Movie, MovieDto>();

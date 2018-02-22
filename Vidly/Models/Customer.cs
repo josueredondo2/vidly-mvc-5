@@ -19,6 +19,7 @@ namespace Vidly.Models
         public byte MembershipTypeId { get; set; }
 
         [Display(Name = "Date of Birth")]
+        //Crea validacion personalizada
         [Min18YearsIfAMember]
         public DateTime? Birthdate { get; set; }
     }

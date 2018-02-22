@@ -24,12 +24,14 @@ namespace Vidly.Controllers
 
         public ViewResult Index()
         {
+            //Revisa el permiso
             if (User.IsInRole(RoleName.CanManageMovies))
                 return View("List");
                 
             return View("ReadOnlyList");
         }
 
+        //REvisa el permiso 
         [Authorize(Roles = RoleName.CanManageMovies)]
         public ViewResult New()
         {
@@ -93,6 +95,7 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //Valida los permisos
         [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Save(Movie movie)
         {

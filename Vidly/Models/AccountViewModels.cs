@@ -8,7 +8,7 @@ namespace Vidly.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
+        //agrega campos al login
         [Required]
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
@@ -72,6 +72,7 @@ namespace Vidly.Models
 
     public class RegisterViewModel
     {
+        //agrega campo al registro de nuevo usuario
         [Required]
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }

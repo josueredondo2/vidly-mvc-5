@@ -34,11 +34,11 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-
+            //Arreglo de peliculas
             var vm = {
                 movieIds: []
             };
-
+            //Configura el autocomplete desde un api
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -47,7 +47,7 @@
                     wildcard: '%QUERY'
                 }
             });
-
+            //Carga la clase de autocompletado y setea propiedades
             $('#customer').typeahead({
                 minLength: 3,
                 highlight: true
@@ -75,11 +75,12 @@
                 name: 'movies',
                 display: 'name',
                 source: movies
-            }).on("typeahead:select", function (e, movie) {
+                }).on("typeahead:select", function (e, movie) {
+                //Agrega item seleccionado a la lista
                 $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
 
                 $("#movie").typeahead("val", "");
-
+                //Carga lista con items
                 vm.movieIds.push(movie.id);
             });
 

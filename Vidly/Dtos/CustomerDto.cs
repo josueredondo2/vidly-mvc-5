@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Dtos
 {
+    //Crea clase con solo lo necesario para enviar via web
     public class CustomerDto
     {
         public int Id { get; set; }

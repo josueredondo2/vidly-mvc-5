@@ -33,11 +33,14 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
+        //Crea la encriptacion de pk 
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
+            //valida que el modelo sea valido
             if (!ModelState.IsValid)
             {
+                //carga view model
                 var viewModel = new CustomerFormViewModel
                 {
                     Customer = customer,
@@ -57,7 +60,7 @@ namespace Vidly.Controllers
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
                 customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
             }
-
+            //guarda info con entity framework
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Customers");
@@ -70,6 +73,7 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int id)
         {
+            //Hay que implementar el include cuando hay problemas al levantar la pagina
             var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             if (customer == null)

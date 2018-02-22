@@ -5,6 +5,8 @@ namespace Vidly.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //Agrega db context a la base de datos
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
@@ -18,6 +20,7 @@ namespace Vidly.Models
 
         public static ApplicationDbContext Create()
         {
+
             return new ApplicationDbContext();
         }
     }

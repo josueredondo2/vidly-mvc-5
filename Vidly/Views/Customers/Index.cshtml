@@ -17,9 +17,11 @@
 
 <h2>Customers</h2>
 <p>
+    //Crea un link a una accion en forma de boton
     @Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
 </p>
 
+//Crea la estructura de la tabla
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -35,22 +37,29 @@
 {
     <script>
         $(document).ready(function () {
+            //Metodo para llenar la tabla
             var table = $("#customers").DataTable({
                 ajax: {
+                    //url donde extrae los datos
                     url: "/api/customers",
                     dataSrc: ""
                 },
+                //Crea las columnas
                 columns: [
                     {
+                        //El atriburo a mostrar 
                         data: "name",
+                        //Renderiza el objeto de la columna personaliza
                         render: function(data, type, customer) {
                             return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
                     {
+                        //Obtiene el la propiedad del objeto
                         data: "membershipType.name"
                     },
                     {
+                        //id del customer
                         data: "id",
                         render: function(data) {
                             return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
@@ -59,16 +68,18 @@
                 ]
             });
 
-
+            //en el evento click
             $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
-
+                //Modal de confirmacion
                 bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
                     if (result) {
                         $.ajax({
+                            //Ejecuta el metodo delete
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
+                                //Elimina el row de la tabla
                                 table.row(button.parents("tr")).remove().draw();
                             }
                         });

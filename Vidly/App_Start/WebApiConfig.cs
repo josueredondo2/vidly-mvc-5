@@ -11,6 +11,7 @@ namespace Vidly
     {
         public static void Register(HttpConfiguration config)
         {
+            //hace que los json siempre sean minusculas
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Formatting.Indented;
